@@ -1,0 +1,85 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Projetos\\pact-exploration\\provider\\pact-exploration-consumer\\PactExploration.Provider\\PactExploration.Provider.Tests\\PactExploration.Provider.Tests.csproj": {}
+  },
+  "projects": {
+    "C:\\Projetos\\pact-exploration\\provider\\pact-exploration-consumer\\PactExploration.Provider\\PactExploration.Provider.Tests\\PactExploration.Provider.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projetos\\pact-exploration\\provider\\pact-exploration-consumer\\PactExploration.Provider\\PactExploration.Provider.Tests\\PactExploration.Provider.Tests.csproj",
+        "projectName": "PactExploration.Provider.Tests",
+        "projectPath": "C:\\Projetos\\pact-exploration\\provider\\pact-exploration-consumer\\PactExploration.Provider\\PactExploration.Provider.Tests\\PactExploration.Provider.Tests.csproj",
+        "packagesPath": "C:\\Users\\leonardo.jorge\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\pact-exploration\\provider\\pact-exploration-consumer\\PactExploration.Provider\\PactExploration.Provider.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\leonardo.jorge\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.1.0, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
