@@ -1,6 +1,6 @@
 ﻿using Provider.Models;
 
-namespace Provider
+namespace PactExploration.Provider
 {
     public static class FakeDatabase
     {

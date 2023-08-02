@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PactExploration.Provider;
 using Provider.Models;
 
 namespace Provider.Controllers

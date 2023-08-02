@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using PactExploration.Provider;
 using PactNet;
 using PactNet.Infrastructure.Outputters;
 using PactNet.Native;
@@ -7,8 +10,8 @@ namespace Provider.Tests
 {
     public class ProviderTests
     {
-        private string pactServiceUri = "http://127.0.0.1:9002";
-        private string providerUri = "http://127.0.0.1:9003";
+        private string pactServiceUri = "http://127.0.0.1:9010";
+        private string providerUri = "http://127.0.0.1:9011";
 
         private ITestOutputHelper outputHelper;
 
@@ -18,7 +21,7 @@ namespace Provider.Tests
         }
 
         [Fact]
-        public void ValidatePostmanApiPact()
+        public void ValidateWeConsumingSomeonePact()
         {
             var config = new PactVerifierConfig
             {
@@ -26,19 +29,20 @@ namespace Provider.Tests
             };
 
             //esse webHost sobe a aplicação pra executar os testes. tem casos q é possível rodar teste no provedor sem subir a aplicação, outros não. não entendi ainda quando usar uma maneira ou outra.
-            //using (var webHost = WebHost.CreateDefaultBuilder().UseStartup<Startup>().UseUrls(this.pactServiceUri).Build())
-            //{
-            //    webHost.Start();
+            using (var webHost = WebHost.CreateDefaultBuilder().UseStartup<Startup>().UseUrls(this.pactServiceUri).Build())
+            {
+                webHost.Start();
 
-            var pactOptions = new PactUriOptions("faM71GPVLZkuKYPcRMYo2g");
+                var pactOptions = new PactUriOptions("faM71GPVLZkuKYPcRMYo2g");
 
-            IPactVerifier pactVerifier = new PactVerifier(config);
-            pactVerifier
-                .FromPactBroker(new Uri("https://stonepagamentos.pactflow.io"), pactOptions)
-                .WithProviderStateUrl(new Uri($"{pactServiceUri}/provider-states"))
-                .ServiceProvider("SomeProvider", new Uri(providerUri))
-                .HonoursPactWith("SomeProvider")//não entendi, o parâmetro é consumerName, mas só funciona se eu passar o nome do provedor q é o PostmanApi
-                .Verify();
+                IPactVerifier pactVerifier = new PactVerifier(config);
+                pactVerifier
+                    .FromPactBroker(new Uri("https://stonepagamentos.pactflow.io"), pactOptions)
+                    .WithProviderStateUrl(new Uri($"{pactServiceUri}/provider-states"))
+                    .ServiceProvider("SomeProvider", new Uri(pactServiceUri))
+                    .HonoursPactWith("SomeProvider")//não entendi, o parâmetro é consumerName, mas só funciona se eu passar o nome do provedor q é o PostmanApi
+                    .Verify();
+            }
         }
     }
 }
