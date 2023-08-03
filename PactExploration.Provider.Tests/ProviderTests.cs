@@ -40,7 +40,7 @@ namespace Provider.Tests
                     .FromPactBroker(new Uri("https://stonepagamentos.pactflow.io"), pactOptions)
                     .WithProviderStateUrl(new Uri($"{pactServiceUri}/provider-states"))
                     .ServiceProvider("SomeProvider", new Uri(pactServiceUri))
-                    .HonoursPactWith("SomeProvider")//não entendi, o parâmetro é consumerName, mas só funciona se eu passar o nome do provedor q é o PostmanApi
+                    .HonoursPactWith("SomeProvider")//não entendi, o parâmetro é consumerName, mas só funciona se eu passar o nome do provedor
                     .Verify();
             }
         }
