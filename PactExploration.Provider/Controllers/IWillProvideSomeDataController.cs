@@ -8,10 +8,17 @@ namespace Provider.Controllers
     [ApiController]
     public class IWillProvideSomeDataController : ControllerBase
     {
+        private readonly FakeDatabase FakeDatabase;
+
+        public IWillProvideSomeDataController(FakeDatabase fakeDatabase)
+        {
+            this.FakeDatabase = fakeDatabase;
+        }
+
         [HttpGet]
         public IEnumerable<GetSomeDataByIdResponse> Get()
         {
-            return FakeDatabase.OurFakeData;
+            return this.FakeDatabase.OurFakeData;
         }
 
         [HttpGet("{id}")]
@@ -21,7 +28,7 @@ namespace Provider.Controllers
             if (!isValidId)
                 return null;
 
-            return FakeDatabase.OurFakeData.FirstOrDefault(x => x.Id == idAsGuid);
+            return this.FakeDatabase.OurFakeData.FirstOrDefault(x => x.Id == idAsGuid);
         }
 
         [HttpPost]
@@ -35,7 +42,7 @@ namespace Provider.Controllers
                 Age = request.Age,
             };
 
-            FakeDatabase.OurFakeData.Add(response);
+            this.FakeDatabase.OurFakeData.Add(response);
 
             return response;
         }
@@ -47,12 +54,12 @@ namespace Provider.Controllers
             if (!isValidId)
                 return null;
 
-            var entity = FakeDatabase.OurFakeData.FirstOrDefault(x => x.Id == idAsGuid);
+            var entity = this.FakeDatabase.OurFakeData.FirstOrDefault(x => x.Id == idAsGuid);
 
             if (entity is null)
                 return null;
 
-            FakeDatabase.OurFakeData.Remove(entity);
+            this.FakeDatabase.OurFakeData.Remove(entity);
 
             return entity;
         }

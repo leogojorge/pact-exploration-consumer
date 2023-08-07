@@ -22,6 +22,8 @@ namespace PactExploration.Provider
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+
+            services.AddSingleton<FakeDatabase>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

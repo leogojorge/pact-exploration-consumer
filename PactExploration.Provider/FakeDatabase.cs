@@ -2,13 +2,13 @@
 
 namespace PactExploration.Provider
 {
-    public static class FakeDatabase
+    public class FakeDatabase
     {
-        public static List<GetSomeDataByIdResponse> OurFakeData = FillOurFakeDatabase();
+        public List<GetSomeDataByIdResponse> OurFakeData;
 
-        private static List<GetSomeDataByIdResponse> FillOurFakeDatabase()
+        public FakeDatabase()
         {
-            return new() {
+            this.OurFakeData = new() {
                 new()
                 {
                     Id = new Guid("993a1ad5-7f7a-4a91-91fb-c0ee62755a2d"),
