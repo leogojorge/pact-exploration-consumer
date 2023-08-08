@@ -43,7 +43,6 @@ namespace Provider.Tests
                     .WithProviderStateUrl(new Uri($"{pactServiceUri}/provider-states"))
                     .ServiceProvider("SomeProvider", new Uri(pactServiceUri))
                     .HonoursPactWith("SomeProvider")//não entendi, o parâmetro é consumerName, mas só funciona se eu passar o nome do provedor
-
                     .Verify();
 
                 webHost.StopAsync();
