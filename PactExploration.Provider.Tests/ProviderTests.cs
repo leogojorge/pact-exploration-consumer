@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using PactExploration.Provider;
 using PactExploration.Provider.Tests;
 using PactNet;
 using PactNet.Infrastructure.Outputters;
