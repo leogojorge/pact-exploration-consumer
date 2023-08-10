@@ -1,7 +1,11 @@
 
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using System;
+
 namespace PactExploration.Provider
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -17,31 +21,42 @@ namespace PactExploration.Provider
     }
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddControllers();
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+        public IConfiguration Configuration { get; }
 
-            services.AddSingleton<FakeDatabase>();
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers()
+                        .AddJsonOptions(options => options.JsonSerializerOptions.WriteIndented = true);
+            services.AddEndpointsApiExplorer();
+            services.AddSingleton<FakeDatabase>();
+            services.AddSwaggerGen();
+
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IActionDescriptorCollectionProvider actionProvider)
+        {
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(e => e.MapControllers());
+            app.UseHttpsRedirection();
+
+            var routes = actionProvider.ActionDescriptors.Items.Where(x => x.AttributeRouteInfo != null);
+            foreach (var route in routes)
+            {
+                Console.WriteLine($"{route.AttributeRouteInfo.Template}");
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            app.UseHttpsRedirection();
-            app.UseAuthorization();
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
         }
+
     }
 }

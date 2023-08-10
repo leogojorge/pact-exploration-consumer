@@ -28,7 +28,7 @@ namespace Provider.Controllers
             if (!isValidId)
                 return null;
 
-            return this.FakeDatabase.OurFakeData.FirstOrDefault(x => x.Id == idAsGuid);
+            return this.FakeDatabase.OurFakeData?.FirstOrDefault(x => x.Id == idAsGuid);
         }
 
         [HttpPost]
